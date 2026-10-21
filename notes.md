@@ -21,10 +21,10 @@ The post types I noticed: favorite novels, general advice, discussions, writing,
 Each one is something I could check by looking at a post, not just a feeling about quality.
 
 1. **Asking vs. telling.** Some posts exist to get an answer ("Looking for a novel where the MC…", "Is X worth reading?"). Others state an opinion or share something. *Check:* is the main point of the post a request or a question?
-   - Example post: ___
-
+   - Example post:
+  
 2. **Names specific novels vs. talks in general.** Recommendation and favorites posts name titles. Advice and discussion posts often talk about web novels in general ("Why do so many MCs…"). *Check:* does it name at least one specific title?
-   - Example post: ___
+   - Example post:
 
 3. **Gives reasons vs. just states.** Some posts explain *why*, pointing to plot, characters, writing quality or a specific chapter. Others are a bare list or a one-liner ("Top 5, go"). *Check:* is there at least one "because" or a concrete detail backing the claim?
    - Example post: ___

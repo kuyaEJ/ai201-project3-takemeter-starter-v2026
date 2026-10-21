@@ -51,48 +51,59 @@ whether you hit them:
 
 ---
 
-## 1. Overall accuracy
+## 1. Every post has a label
 
-Overall accuracy on the held-out test set is at least **0.40**.
+<!-- Your criterion. It must name a number. -->
+The model correctly categorizes 3 out of every 4 posts
 
 **Why this target:**
-My posts so far have few promos but many requests and discussions, so I expect the labels to split roughly evenly, with each label around 0.30–0.40 of the data.
+Even if the model labels wrong the objective is to train AI to classify posts. It should be able to learn or choose a label at the very least depending on which of the three labels a post is in with decent accuracy. It is reasonable to say it will miss at least once.
+
 
 ---
 
-## 2. Every post gets a valid label
+## 2.
 
-At least **90%** of held-out test posts receive one of the three labels: `promo`, `request` or `discussion`.
+<!-- Your criterion. -->
+Promo posts should be accurate guessed 5 of 5 posts.
 
 **Why this target:**
-Every post should get one of my three labels. The only exceptions would be if something errors, loses connection or hits a token limit.
+The promo posts are one of the easiest to diagnose by eye due to them narrating or giving them away but through code it should be a bit more difficult to achieve. We keep the standard at 5/5 to keep expectations high.
 
 ---
 
-## 3. Minimum examples per label
+## 3.
 
-Every label has at least **30%** of the total posts in `labels.csv`.
+<!-- Your criterion. -->
+A post with a link to a thread is a request but a link to a GitHub repo or live application is a promo in 4 of 5 posts where links are provided.
+
 
 **Why this target:**
-Even if the posts aren't spread evenly, there should still be at least 30 of the 200 posts per label.
+This accounts for edge cases and ensures links and text are accounted in labels. It should be easy to check string for github.com but for requests it should be harder to tell whether a linkk is bad.
+
 
 ---
 
-## 4. Accuracy across seeds
+## 4.
 
-Overall accuracy on the held-out test set is at least **0.80** in at least **2 of 3** seeds.
+<!-- Your criterion. -->
+If the post is title-only and ends with ? or starts with "How to / Looking for", default is request in 5 of 5 posts
+
 
 **Why this target:**
-(reason to add)
+The title only and question posts are giveaways and should be accurate 100% of the time.
+
 
 ---
 
-## 5. Smallest label share
+## 5.
 
-The smallest label is at least **10%** of the total count in `labels.csv`.
+<!-- Your criterion. -->
+Human labeling should match with the model in at least 3 of 5 posts.
+
 
 **Why this target:**
-(reason to add)
+Accounts for the AI model and human error since I honestly didn't have time to read all the labels.
 
 
 ---
