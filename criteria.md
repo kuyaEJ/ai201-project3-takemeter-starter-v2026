@@ -51,62 +51,48 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy
 
-<!-- Your criterion. It must name a number. -->
-
-
+Overall accuracy on the held-out test set is at least **0.40**.
 
 **Why this target:**
-
-
+My posts so far have few promos but many requests and discussions, so I expect the labels to split roughly evenly, with each label around 0.30–0.40 of the data.
 
 ---
 
-## 2.
+## 2. Every post gets a valid label
 
-<!-- Your criterion. -->
-
-
+At least **90%** of held-out test posts receive one of the three labels: `promo`, `request` or `discussion`.
 
 **Why this target:**
-
-
+Every post should get one of my three labels. The only exceptions would be if something errors, loses connection or hits a token limit.
 
 ---
 
-## 3.
+## 3. Minimum examples per label
 
-<!-- Your criterion. -->
-
-
+Every label has at least **30%** of the total posts in `labels.csv`.
 
 **Why this target:**
-
-
+Even if the posts aren't spread evenly, there should still be at least 30 of the 200 posts per label.
 
 ---
 
-## 4.
+## 4. Accuracy across seeds
 
-<!-- Your criterion. -->
-
-
+Overall accuracy on the held-out test set is at least **0.80** in at least **2 of 3** seeds.
 
 **Why this target:**
-
-
+(reason to add)
 
 ---
 
-## 5.
+## 5. Smallest label share
 
-<!-- Your criterion. -->
-
-
+The smallest label is at least **10%** of the total count in `labels.csv`.
 
 **Why this target:**
-
+(reason to add)
 
 
 ---
