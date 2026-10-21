@@ -41,8 +41,9 @@
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
+I chose the r/WebNovels community. Their posts range from things like favorite novels, general advice, discussions, writing, recommendations, resources, looking for novels, and novel ads. Most posts can be boiled down to being either a discussion or question.
 
-
+I am using MPS Apple Silicon - M1 .
 
 ---
 
