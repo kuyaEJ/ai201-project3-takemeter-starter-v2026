@@ -41,9 +41,9 @@
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
-I chose the r/WebNovels community. Their posts range from things like favorite novels, general advice, discussions, writing, recommendations, resources, looking for novels, and novel ads. Most posts can be boiled down to being either a discussion or question.
+I chose the r/WebNovels community. Their posts range from things like favorite novels, general advice, discussions, writing, recommendations, resources, looking for novels, and novel ads. Most posts can be boiled down to being either a discussion or question. TakeMeter sorts each post into one of three labels: `promo` (pitches one specific novel), `request` (asks others to name novels) or `discussion` (everything else, mostly opinions).
 
-I am using MPS Apple Silicon - M1 .
+I am using MPS Apple Silicon - M1.
 
 ---
 
@@ -55,31 +55,78 @@ I am using MPS Apple Silicon - M1 .
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `request`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** A post that asks other people to name novels the poster hasn't named yet, either suggestions to read or help finding a title they forgot.
 
 **Example 1:**
->
+> [DISC] Rec me webnovels where the mc has panic disorder/ depression 
+> Hii, I’m kinda new to webnovels but can u recommend me webnovels where the mc has depression/panic disorder/PTSD/mental illness. Its a plus if the mc is an idol or a part of the entertainment industry.here are some webnovels I’ve read:
+> - debut or die
+> - from thug to idol
+> 
+> Any recs are much appreciated :)
 
 **Example 2:**
->
+> [DISC] Most Popular Finished Webnovels
+> Please suggest the most popular webnovels - ones which everyone agrees are good. I have read Worm,Reverend Insanity,Lord of the Mysteries, Shadow Slave. + Got dropped into ghost story, painter who paints dungeons. I want to read The Most Popular finished Webnovels before reading the underrated ones and ones with mixed opinions. Please help 🙏🙏🫡 PS - no harem plz Edit : Thanks for the replies everyone
+
+### `discussion`
+
+**Definition:** Any post that isn't `promo` or `request`: opinions, questions about novels already named, writing talk, news and resources.
+
+**Example 1:**
+> [DISC] No joy in reading since LoTM and Reverend Insanity
+> Currently i have read 3 novels: Shadow slave, Reverned Insanity and LoTM. And i just started with my fourth one renegade immortal. But to be honest it just feels like a slop Version of Reverned insanity( I am currently at ch 110 or something like that). Will it get better or did RI and Lotm set the bar to high up. Looking back SS (mostly after tomb of ariel) also feels like a bit of slop compared to these two.
+
+**Example 2:**
+>[DISC] This is my decade of experience with Korean, Chinese, Japanese, web and light novels.
+> Japanese web/light novels are an escape in the real world, may it be following the culture and integration (reincarnation or Isekai or rebirth, etc), or denial of culture (respectfully or begrudgingly deny other world culture and want to leave by any way possible)
+
+>Korean web/light novels are wish fulfillment in a hyper focus variety (being a hunter, survivor, traveler, adventurer, jobs, or roles). Especially with the new variants at the moment (2025). They focus more on fixation and obsession to a select target.
+
+>Chinese web/light novels focuses more on aggressive take over of story. May it be destroying the foundation of a background story (the martial system, hero system, adventure system, political system, etc) to make their own, finding faults and making their own set of rules and morals and forcefully implement it to the native of the stories. It is basically letting their inner demons out in their stories and finding ways to moralize it. It is worse in fan fics and collective intellectual appropriations of popular media (anime, novels, movies, games, etc) where they hyper impose their standards in a story and forge a narrative around their only select characters.
+
+>Overall, novels are suppose to be interesting. Some have pros and cons and some are trying to redefine and subvert our expectations in their own ways. This is my general take to novels and not me being racist. Have a nice day.
+
+### `promo`
+
+**Definition:** A post whose main purpose is to present one specific novel to readers (a pitch, blurb, synopsis or link), whether the poster wrote it, translated it, or just found it.
+
+*Why not `author`:* I first tried an `author` label, but my second example never says the poster wrote it, and I couldn't tell authors from readers sharing a find. What I can see in the text is whether the post is pitching one novel, so I label that instead.
+
+**Example 1:**
+> [IP] The Realm That Called Us [Non-LitRPG Progression Fantasy]
+> Hey everyone! I'm Mystery X, and I'd like to share my webnovel, The Realm That Called Us. “You were called because this world needs heroes who can still become human after carrying the weight of gods.” Two strangers. Two completely different personalities. Somehow, they work surprisingly well together...
+
+
+
+**Example 2:**
+> [IP] Web novel from the website kakuyoumu Reincarnated as the weakest skeleton soldier in an otherworldly dungeon, I aim to become the strongest through evolution.
+> Yamada Kaito is a hikikomori abandoned by his family; he makes a living as a professional RPG player. When suddenly he receives a message from a strange man offering him a life in...
+
+### Order of checks
+
+Every post gets exactly one label. Ask these questions in order and stop at the first "yes":
+
+1. Is the post mainly a pitch, blurb, synopsis or link for one specific novel? → `promo`
+2. Does it ask others to name novels it hasn't named (suggestions, or "help me find this title")? → `request`
+3. Otherwise → `discussion`
+
+### Second boundary: `promo` vs. `discussion`
+
+**Rule:** If most of the post is a blurb, synopsis or link for one novel, it's `promo`, even if it ends with a question like "What do you think?" or "Would you read this?". If the post mentions a novel but mostly gives the poster's opinion of it, it's `discussion`.
+
+**Tags:** Posts start with tags like `[DISC]` and `[IP]`. I removed them from every post in `labels.csv` so the model has to read the post, not the tag.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `request` vs. `discussion`
 
 **The decision rule I used every time:**
+If a post that isn't `promo` asks other people to name novels it hasn't named, it's `request`. Every other post is `discussion`, including posts phrased as questions about novels the poster already named ("Is X worth reading?", "Will X get better?"), because those ask for opinions, not new titles.
+
+*Boundary example:* "[DISC] is omniscient reader a good starter web novel? … is it well written, is it easy to understand? is it well paced?" It's a question and sounds like asking for advice, but it asks for opinions on a novel already named, so it's `discussion`.
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
 
@@ -92,45 +139,41 @@ I am using MPS Apple Silicon - M1 .
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public text posts from r/WebNovels. I saved Reddit's public JSON listings (New and the next page of New, Hot, Top of the month, Top of the year) from my browser into `data/`. I kept only text posts, dropped image-only posts and duplicates, and removed the leading tags (`[DISC]`, `[IP]`, `[FIN]`…) from every title so the model can't learn the tag instead of the post. Each row's `text` is the post title plus the full body, untrimmed.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** I labelled the taxonomy examples myself, and 20 posts cold with no AI (marked `cold` in `note`). Claude pre-labelled the rest using my definitions and order of checks (marked `prelabeled` in `note`). I then reviewed the pre-labels and corrected the ones I disagreed with.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `discussion` | 88 | 38% |
+| `promo` | 76 | 33% |
+| `request` | 66 | 29% |
+| **Total** | 230 | 100% |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* "Where to find full novel of Slain Dragon Bride for free", asking where to read a novel they already named. About 15 posts in the dataset are like this.
 >
-> *Could have been:*
+> *Could have been:* `request` or `discussion`
 >
-> *I chose, because:*
+> *I chose, because:* `discussion`. They're asking for a website, not for people to name novels they haven't named.
 
 **2.**
-> *The post:*
+> *The post:* "Recommending A webnovel I found last night: go read *Zombie Cafe*… it is so GOOD", from a reader, not the author.
 >
-> *Could have been:*
+> *Could have been:* `promo` or `discussion`
 >
-> *I chose, because:*
+> *I chose, because:* `promo`. The whole post is a pitch for one novel, and my `promo` label doesn't depend on who wrote it.
 
 **3.**
-> *The post:*
+> *The post:* "Current novel recs: 1. PERFECT RUN 5/5… 2. WORLD'S END… 3. FLORIDA MAN'S GENERAL STORE…", a ranked list of several novels with short reviews.
 >
-> *Could have been:*
+> *Could have been:* `promo`, `request` or `discussion`
 >
-> *I chose, because:*
+> *I chose, because:* `discussion`. It pitches several novels rather than one, and it doesn't ask anyone to name novels, so it's an opinion post.
 
 ---
 
@@ -163,17 +206,17 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Which of my labels I could tighten.
+- *What came back:* Claude pointed out that my second `author` example ("Web novel from the website kakuyoumu…") never says the poster wrote it. It could just be a reader sharing a find, so my `author` rule couldn't be applied from the text.
+- *What I changed:* I replaced `author` with `promo` (a post pitching one specific novel, whoever wrote it), because that is something I can see in the text.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Claude pre-labelled my posts, and I labelled 20 of them cold without seeing its labels.
+- *What came back:* We agreed on 15 of 20. Comparing them showed two rows where Claude's labels had shifted by one position ("Any recommendations for a fellow reader…" was marked `discussion`), which was a bug in its pre-labelling, not a judgment call.
+- *What I changed:* We fixed the shifted rows. My cold labels replaced Claude's on all 20, and the 5 disagreements are recorded in the `note` column ("cold (Claude pre-label was …)"). It also showed me why the cold check comes first: it's the only way to catch errors in AI labels.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** Claude pre-labelled about 205 of the 230 posts using my three definitions and my order of checks (promo → request → discussion). Those rows say `prelabeled` in the `note` column. I labelled 20 posts cold myself with no AI (`cold`), and the taxonomy examples are mine (`taxonomy example`). I reviewed the pre-labels and changed the ones I disagreed with.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
