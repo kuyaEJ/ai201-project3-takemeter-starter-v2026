@@ -181,7 +181,7 @@ If a post that isn't `promo` asks other people to name novels it hasn't named, i
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:**MPS Apple Silicon
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
 
